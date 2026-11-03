@@ -1,6 +1,6 @@
-.PHONY: website
+.PHONY: website listings
 
-website:
+website: listings
 	pandoc --standalone \
          --from commonmark_x+alerts \
          --output=website/index.html \
@@ -12,3 +12,7 @@ website:
          --lua-filter=pandoc/paper.lua \
          --lua-filter=pandoc/date.lua \
          src/index.md
+
+listings:
+	sh gen-listing.sh website/prf-theo "Proof Theory Course Materials"
+	sh gen-listing.sh website/prf-sys "Proof Systems Course Materials"
